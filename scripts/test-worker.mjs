@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import worker,{parseResponse,fetchMedia} from '../worker/index.js';
+assert.equal(parseResponse('<response><data><cctvname>반계IC</cctvname><cctvurl><![CDATA[https://example.org/live.m3u8?a=1&b=2]]></cctvurl></data></response>').items[0].cctvname,'반계IC');
+const key='test-only-not-an-actual-key';
+let calls=0,redirectMode='upgrade';globalThis.fetch=async input=>{calls++;const u=new URL(input);if(u.hostname==='openapi.its.go.kr')return Response.json({response:{data:[{cctvname:'[국도42] 반계IC',cctvurl:'http://example.org/live.m3u8',cctvtype:'4'},{cctvname:'다른IC',cctvurl:'https://example.org/other.m3u8'}]}});if(u.pathname==='/live.m3u8'){if(redirectMode==='private')return new Response(null,{status:302,headers:{Location:'http://127.0.0.1/private'}});if(redirectMode==='other')return new Response(null,{status:302,headers:{Location:'https://evil.example/live.m3u8'}});if(redirectMode==='loop')return new Response(null,{status:302,headers:{Location:u.href}});if(redirectMode==='downgrade'&&u.protocol==='https:')return new Response(null,{status:302,headers:{Location:'http://example.org/live.m3u8'}});if(u.protocol==='http:')return new Response(null,{status:302,headers:{Location:'https://example.org/live.m3u8'}});}if(u.pathname==='/live.m3u8')return new Response('#EXTM3U\n#EXT-X-TARGETDURATION:5\n#EXTINF:5,\nsegment.ts\n',{headers:{'Content-Type':'application/vnd.apple.mpegurl'}});if(u.pathname==='/segment.ts')return new Response(new Uint8Array([0x47,0,1]),{headers:{'Content-Type':'video/mp2t'}});throw Error('Unexpected target');};
+const env={ITS_API_KEY:key};let r=await worker.fetch(new Request('https://test/api/cctv'),{});assert.equal((await r.json()).code,'key_missing');
+r=await worker.fetch(new Request('https://test/api/cctv'),env);const text=await r.text();assert(!text.includes(key));assert(!text.includes('https://example.org'));const d=JSON.parse(text);assert.equal(d.cameras.length,1);
+r=await worker.fetch(new Request('https://test'+d.cameras[0].stream),env);assert.equal(r.status,200);const m3u8=await r.text();assert(m3u8.includes('/api/stream?t='));const segment=m3u8.split('\n').find(x=>x.startsWith('/api/stream'));
+r=await worker.fetch(new Request('https://test'+segment),env);assert.equal(r.status,200);assert.equal((await r.arrayBuffer()).byteLength,3);
+const before=calls;r=await worker.fetch(new Request('https://test/api/stream?t=bad.bad'),env);assert.equal(r.status,403);assert.equal(calls,before);
+console.log('Passed: JSON/XML parsing, camera filtering, key redaction, HLS rewriting, segment transfer, ticket tamper rejection.');
+
+for(const mode of ['private','other','loop','downgrade']){redirectMode=mode;await assert.rejects(()=>fetchMedia('http://example.org/live.m3u8'));}
+console.log('Passed: HTTP→HTTPS media redirect, correct HLS base URL, private/unrelated/loop/downgrade rejection.');

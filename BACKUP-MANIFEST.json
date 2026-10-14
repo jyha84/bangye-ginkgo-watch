@@ -1,0 +1,141 @@
+{
+  "format": 1,
+  "backup_date_kst": "2026-10-14",
+  "runtime_checked": "Node.js v24.19.0",
+  "source_commit": "5f7c90f1f150d4d7ebf4ed08db96ab93ee687c76",
+  "site_url": "https://bangye-ginkgo-watch.bzbone.chatgpt.site/",
+  "source_files_copied_unchanged": 18,
+  "excluded": [
+    ".git/",
+    "dist/",
+    "node_modules/",
+    ".env*",
+    ".sites-runtime/",
+    "runtime secret values",
+    "CCTV recordings",
+    "user photos",
+    "browser location history"
+  ],
+  "files": [
+    {
+      "path": ".gitignore",
+      "size_bytes": 42,
+      "sha256": "6827faddb240827df7aa0e804b66274e8c8dbcd595cf542718973eca97bd0858"
+    },
+    {
+      "path": ".openai/hosting.json",
+      "size_bytes": 63,
+      "sha256": "5838290c95f6e1d6be02df4861a51a7f14d54d9e5358bad720e6e226ec477264"
+    },
+    {
+      "path": "README.md",
+      "size_bytes": 5114,
+      "sha256": "5602decc80c66f3d47e9a67714c303c4e6a821699f01a9d79f356b8a7449e45c"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "size_bytes": 3161,
+      "sha256": "ebdd93522ac2ac02ab713692b2f50a8861bd1e9fce72d418437150d046a52fa8"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "size_bytes": 2264,
+      "sha256": "e3b9f7d4320cae0f50250fddb332a3890e254df44c1097d33aab138eda3b39dc"
+    },
+    {
+      "path": "docs/REFERENCES.md",
+      "size_bytes": 1660,
+      "sha256": "1f515dbd0af9e674f9460c92759211abefbf379e9c2d3faaa3879bb7cf7becff"
+    },
+    {
+      "path": "docs/RESTORE.md",
+      "size_bytes": 3012,
+      "sha256": "237ded68769d3d10138bede6e2bbb13891ea0303c82872782d55a5d3020eaad1"
+    },
+    {
+      "path": "index.html",
+      "size_bytes": 3953895,
+      "sha256": "71e153dae3a3e0db67395db66dbfd04b5bf6c0506edacab60f0b1c24905a8474"
+    },
+    {
+      "path": "package.json",
+      "size_bytes": 126,
+      "sha256": "8242f4a50b99b76e92d1371f952681074ec9dd324f725cf9bb010b88143ebca6"
+    },
+    {
+      "path": "scripts/build.mjs",
+      "size_bytes": 1182,
+      "sha256": "f1fb805ac06f62e033cf41f048a8d4f030b397c7f58fcdda65f1ca8712974747"
+    },
+    {
+      "path": "scripts/export-html.mjs",
+      "size_bytes": 2257,
+      "sha256": "dff7a7e554a303bb574dd1d25d29deb80b0693329a520ef74c615acf3af4a4b9"
+    },
+    {
+      "path": "scripts/test-cctv-zoom.mjs",
+      "size_bytes": 4296,
+      "sha256": "5cce9c2d738fb8f5ca387ea3a8b3d88a983060f887fea0fd73ba32f915470db2"
+    },
+    {
+      "path": "scripts/test-directions.mjs",
+      "size_bytes": 3626,
+      "sha256": "6750ad7684a069bdc494390b30dfac6554c5eacc78a74ffd1c609c0fdc04777f"
+    },
+    {
+      "path": "scripts/test-worker.mjs",
+      "size_bytes": 2890,
+      "sha256": "995e4f891ecd916234dd9fe645ae2308acf20942020138cb30c621d4b034f8cb"
+    },
+    {
+      "path": "web/app.js",
+      "size_bytes": 4648,
+      "sha256": "8b258aa35f0f9dc1acb84b8ff15ac36dc53379ec75989d9c132949c74ac01233"
+    },
+    {
+      "path": "web/cctv-zoom.js",
+      "size_bytes": 5283,
+      "sha256": "f38b61747adfc22b9d39b579a714bb1b653b5a180c152f10e9fc431e24b60c16"
+    },
+    {
+      "path": "web/cctv.js",
+      "size_bytes": 5700,
+      "sha256": "9db4ae943758c2581c34cd57f6d2d8e7c17891c6a73d0717f697fc5a86e4ec4d"
+    },
+    {
+      "path": "web/directions.js",
+      "size_bytes": 3507,
+      "sha256": "799473c01dac6c2fd25fdd22d20dc9a1f799e138a3404cf50331c2079dfe02d7"
+    },
+    {
+      "path": "web/ginkgo-leaf.png",
+      "size_bytes": 1456685,
+      "sha256": "3c73e5f11af79f0b7b212ed66406e7d11da776d6c3f1f978f2f634bcfb5689dd"
+    },
+    {
+      "path": "web/index.html",
+      "size_bytes": 14740,
+      "sha256": "d0151381ba670a508979da50f8ea351ce4cee073d114907ebfd1a16e1e08a66d"
+    },
+    {
+      "path": "web/studio.js",
+      "size_bytes": 10334,
+      "sha256": "ea758ebf3d36cc092961d07d5a798de7d564f33f443af6ce1bb653ab509b8665"
+    },
+    {
+      "path": "web/style.css",
+      "size_bytes": 20878,
+      "sha256": "797620695dbb4e67980b96004856659957bde2e84acb95b1189b5c1a40724cdd"
+    },
+    {
+      "path": "web/tree3d.js",
+      "size_bytes": 9817,
+      "sha256": "ffa3661dd5be7b94077e76bc6371972599e27df250d296b0803b3ff6cfd1360c"
+    },
+    {
+      "path": "worker/index.js",
+      "size_bytes": 10147,
+      "sha256": "530bb9afec97053810ee1d7dca3b9af5a0057e70f916c720f6046aec708c2ea5"
+    }
+  ]
+}

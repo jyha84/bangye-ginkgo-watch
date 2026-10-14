@@ -1,0 +1,16 @@
+import {readFileSync,writeFileSync,mkdirSync} from 'node:fs';
+import {dirname} from 'node:path';
+const target=process.argv[2];if(!target)throw Error('output HTML path required');
+const leaf='data:image/png;base64,'+readFileSync('web/ginkgo-leaf.png').toString('base64');
+let html=readFileSync('web/index.html','utf8');
+html=html.replaceAll('src="ginkgo-leaf.png"','src="'+leaf+'"');
+html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+readFileSync('web/style.css','utf8')+'</style>');
+html=html.replace('<script src="directions.js"></script>','<script>'+readFileSync('web/directions.js','utf8')+'</script>');
+html=html.replace('<script src="app.js"></script>','<script>'+readFileSync('web/app.js','utf8')+'</script>');
+html=html.replace('<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.13/dist/hls.min.js"></script>','');
+html=html.replace('<script src="cctv.js"></script>',`<script>document.getElementById('cctv-message').textContent='독립 HTML에서는 지도에서 CCTV를 확인하세요. 현장 사진을 열어 3D 색 분석과 확대 보정을 사용할 수 있습니다.';document.getElementById('cctv-badge').textContent='지도에서 확인';document.getElementById('cctv-retry').hidden=true;document.getElementById('cctv-diagnose').hidden=true;document.getElementById('cctv-diagnostic').textContent='독립 HTML은 CCTV 서버에 연결하지 않습니다. 위 지도 버튼을 이용하세요.';</script>`);
+html=html.replace('<script src="studio.js"></script>','<script>window.BANGYE_LEAF_URL='+JSON.stringify(leaf)+';</script><script>'+readFileSync('web/studio.js','utf8')+'</script>');
+html=html.replace('<script src="cctv-zoom.js"></script>','<script>'+readFileSync('web/cctv-zoom.js','utf8')+'</script>');
+html=html.replace(/<script type="module">import\('\.\/tree3d\.js'\)[\s\S]*?<\/script>/,'<script type="module">'+readFileSync('web/tree3d.js','utf8').replace("const host=document", "const host=document")+'</script>');
+html=html.replace('CCTV 장면이나 현장 사진에서','현장 사진에서').replace('반계리 지금 · 은행나무 현황 확인','반계리 지금 · 독립 HTML');
+mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);console.log('Standalone HTML saved:',target);
