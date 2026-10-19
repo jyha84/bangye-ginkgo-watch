@@ -4,7 +4,7 @@
 
 - 이름: 반계리 지금 / Bangye Ginkgo Watch
 - 운영 URL: https://bangye-ginkgo-watch.bzbone.chatgpt.site/
-- 백업 기준 소스: `5f7c90f1f150d4d7ebf4ed08db96ab93ee687c76`
+- 백업 기준 소스: `5bb300b3ced35881c2aa52d44eadc37ee4014b54`
 - 운영 사이트는 공개 상태이며, 백업 저장소의 가시성과 별도로 관리합니다.
 - 프런트엔드는 순수 HTML/CSS/JavaScript, 백엔드는 Worker ESM입니다.
 - npm 런타임 의존성은 없고 브라우저에서 Three.js·HLS.js CDN을 읽습니다.
@@ -17,7 +17,8 @@
 4. 낙엽 효과 on/off와 동작 줄이기 설정.
 5. 모바일에서도 정돈된 짙은 녹색·금색 UI와 공통 버튼 스타일.
 6. 현재 위치에서 반계리 은행나무까지 네이버 지도 앱·카카오맵 길찾기.
-7. 화면 수정 시 독립 HTML도 재생성하기.
+7. 현장 CCTV·3D 나무·방문 정보 탭, 지연 로딩과 CCTV 장면 가져오기 전환.
+8. 화면 수정 시 독립 HTML도 재생성하기.
 
 ## 비밀값
 
@@ -30,6 +31,7 @@ node scripts/build.mjs
 node scripts/test-worker.mjs
 node scripts/test-cctv-zoom.mjs
 node scripts/test-directions.mjs
+node scripts/test-ui.mjs
 ```
 
 테스트는 모의 데이터 기반입니다. 실제 CCTV 가용성·휴대폰 앱 전환·GPS 위치는 별도로 확인합니다. 문서만 바꾸거나 백업만 할 때는 운영 사이트를 불필요하게 재게시하지 않습니다.

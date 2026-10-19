@@ -1,8 +1,8 @@
-(()=>{'use strict';const byId=id=>document.getElementById(id);let hls=null,cameras=[],generation=0,timer=null;const video=byId('cctv-video'),img=byId('cctv-image'),message=byId('cctv-message'),badge=byId('cctv-badge');
+(()=>{'use strict';const byId=id=>document.getElementById(id);let hls=null,cameras=[],generation=0,timer=null;const video=byId('cctv-video'),img=byId('cctv-image'),message=byId('cctv-message'),badge=byId('cctv-badge'),recovery=byId('cctv-recovery'),panel=document.querySelector('.camera-panel');
 function stop(){clearTimeout(timer);if(hls){hls.destroy();hls=null;}video.pause();video.removeAttribute('src');video.load();video.hidden=true;img.hidden=true;img.removeAttribute('src');byId('cctv-fullscreen').disabled=true;if(byId('capture-frame'))byId('capture-frame').disabled=true;}
-function status(text,label){message.textContent=text;message.hidden=false;badge.textContent=label;}
+function status(text,label){message.textContent=text;message.hidden=false;badge.textContent=label;const failed=['조회 실패','조회 결과 없음','영상 미확인'].includes(label);recovery.hidden=!failed;panel.dataset.streamState=failed?'error':'loading';}
 function failure(text){clearTimeout(timer);video.hidden=true;img.hidden=true;status(text,'영상 미확인');byId('cctv-fullscreen').disabled=true;if(byId('capture-frame'))byId('capture-frame').disabled=true;}
-function ready(){clearTimeout(timer);message.hidden=true;badge.textContent=img.hidden?'영상 연결됨':'정지영상 연결됨';byId('cctv-fullscreen').disabled=false;if(byId('capture-frame'))byId('capture-frame').disabled=false;}
+function ready(){clearTimeout(timer);recovery.hidden=true;panel.dataset.streamState='ready';message.hidden=true;badge.textContent=img.hidden?'영상 연결됨':'정지영상 연결됨';byId('cctv-fullscreen').disabled=false;if(byId('capture-frame'))byId('capture-frame').disabled=false;}
 function playCamera(index){generation++;stop();const camera=cameras[index];if(!camera)return;status('영상을 불러오는 중입니다…','영상 연결 중');timer=setTimeout(()=>failure('영상이 지연되고 있습니다. CCTV 다시 연결을 누르거나 지도에서 확인해 주세요.'),25000);
 if(camera.type==='3'){img.onload=ready;img.onerror=()=>failure('정지영상을 불러오지 못했습니다.');img.src=camera.stream;img.hidden=false;return;}
 video.hidden=false;const token=generation;

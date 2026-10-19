@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "backup_date_kst": "2026-10-14",
+  "backup_date_kst": "2026-10-19",
   "runtime_checked": "Node.js v24.19.0",
-  "source_commit": "5f7c90f1f150d4d7ebf4ed08db96ab93ee687c76",
+  "source_commit": "5bb300b3ced35881c2aa52d44eadc37ee4014b54",
   "site_url": "https://bangye-ginkgo-watch.bzbone.chatgpt.site/",
-  "source_files_copied_unchanged": 18,
+  "source_files_copied_unchanged": 20,
   "excluded": [
     ".git/",
     "dist/",
@@ -29,18 +29,18 @@
     },
     {
       "path": "README.md",
-      "size_bytes": 5114,
-      "sha256": "5602decc80c66f3d47e9a67714c303c4e6a821699f01a9d79f356b8a7449e45c"
+      "size_bytes": 5373,
+      "sha256": "549113e2aa34a30110f5190a3a13de32be1e3b58a5afefe141a3089f65e1b324"
     },
     {
       "path": "docs/ARCHITECTURE.md",
-      "size_bytes": 3161,
-      "sha256": "ebdd93522ac2ac02ab713692b2f50a8861bd1e9fce72d418437150d046a52fa8"
+      "size_bytes": 3475,
+      "sha256": "d0cc2f7f5ea114ba74e2aa4a5de2159828461ffb8c7c9e46064ed0afc82ed3d9"
     },
     {
       "path": "docs/HANDOFF.md",
-      "size_bytes": 2264,
-      "sha256": "e3b9f7d4320cae0f50250fddb332a3890e254df44c1097d33aab138eda3b39dc"
+      "size_bytes": 2385,
+      "sha256": "784e043e4e2326c1558536bacd66304a3dcfb054429c76f45cb283b31be50258"
     },
     {
       "path": "docs/REFERENCES.md",
@@ -54,8 +54,8 @@
     },
     {
       "path": "index.html",
-      "size_bytes": 3953895,
-      "sha256": "71e153dae3a3e0db67395db66dbfd04b5bf6c0506edacab60f0b1c24905a8474"
+      "size_bytes": 3962320,
+      "sha256": "dff3955a24d5bcd24a3024529d148f873ee9aad662529ecc9b5368f98bb3fed5"
     },
     {
       "path": "package.json",
@@ -64,13 +64,13 @@
     },
     {
       "path": "scripts/build.mjs",
-      "size_bytes": 1182,
-      "sha256": "f1fb805ac06f62e033cf41f048a8d4f030b397c7f58fcdda65f1ca8712974747"
+      "size_bytes": 1217,
+      "sha256": "3f0557ac4ac1fda0eab18b7e47d3880b514241df28888f36240d405da71068cf"
     },
     {
       "path": "scripts/export-html.mjs",
-      "size_bytes": 2257,
-      "sha256": "dff7a7e554a303bb574dd1d25d29deb80b0693329a520ef74c615acf3af4a4b9"
+      "size_bytes": 3083,
+      "sha256": "392c059a0ff0f243d6514612c815a45d408c7b23fac35b6a897200cd2d5725ea"
     },
     {
       "path": "scripts/test-cctv-zoom.mjs",
@@ -81,6 +81,11 @@
       "path": "scripts/test-directions.mjs",
       "size_bytes": 3626,
       "sha256": "6750ad7684a069bdc494390b30dfac6554c5eacc78a74ffd1c609c0fdc04777f"
+    },
+    {
+      "path": "scripts/test-ui.mjs",
+      "size_bytes": 4628,
+      "sha256": "e806fd0f564986933a73a5f8916bf6c6445516147b2e33c5f95b609eb2200367"
     },
     {
       "path": "scripts/test-worker.mjs",
@@ -99,8 +104,8 @@
     },
     {
       "path": "web/cctv.js",
-      "size_bytes": 5700,
-      "sha256": "9db4ae943758c2581c34cd57f6d2d8e7c17891c6a73d0717f697fc5a86e4ec4d"
+      "size_bytes": 5996,
+      "sha256": "c53782c6ddaa038568f4e2cd340b3ee0589c0a36de0ca91cbb583a66840d8a87"
     },
     {
       "path": "web/directions.js",
@@ -114,23 +119,28 @@
     },
     {
       "path": "web/index.html",
-      "size_bytes": 14740,
-      "sha256": "d0151381ba670a508979da50f8ea351ce4cee073d114907ebfd1a16e1e08a66d"
+      "size_bytes": 16523,
+      "sha256": "55381be057ba561980e963b9f0f6f467b9db55e6982cfb84101bb63d83917bbf"
     },
     {
       "path": "web/studio.js",
-      "size_bytes": 10334,
-      "sha256": "ea758ebf3d36cc092961d07d5a798de7d564f33f443af6ce1bb653ab509b8665"
+      "size_bytes": 10353,
+      "sha256": "727188ddc3204712a000422f7c8ed05391f9c80715153acc22ec6a413ea8faa6"
     },
     {
       "path": "web/style.css",
-      "size_bytes": 20878,
-      "sha256": "797620695dbb4e67980b96004856659957bde2e84acb95b1189b5c1a40724cdd"
+      "size_bytes": 24968,
+      "sha256": "7e73f73c26ad6735a9d76f216937d4bff41e4a5bbbfa28f39ff3608b60ae3d64"
     },
     {
       "path": "web/tree3d.js",
-      "size_bytes": 9817,
-      "sha256": "ffa3661dd5be7b94077e76bc6371972599e27df250d296b0803b3ff6cfd1360c"
+      "size_bytes": 9873,
+      "sha256": "3aa026a3351d4da91277de3d19ff352d14499d6f04a9cfdebcda4f49ebd27cff"
+    },
+    {
+      "path": "web/ui.js",
+      "size_bytes": 2270,
+      "sha256": "ce9c3dc20ad705ae398157fb4a596593e5b0a91b866be0d16a2da026d2cf8578"
     },
     {
       "path": "worker/index.js",

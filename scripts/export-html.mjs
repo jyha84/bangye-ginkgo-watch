@@ -5,12 +5,15 @@ const leaf='data:image/png;base64,'+readFileSync('web/ginkgo-leaf.png').toString
 let html=readFileSync('web/index.html','utf8');
 html=html.replaceAll('src="ginkgo-leaf.png"','src="'+leaf+'"');
 html=html.replace('<link rel="stylesheet" href="style.css">','<style>'+readFileSync('web/style.css','utf8')+'</style>');
+html=html.replace('<script src="ui.js"></script>','<script>'+readFileSync('web/ui.js','utf8')+'</script>');
 html=html.replace('<script src="directions.js"></script>','<script>'+readFileSync('web/directions.js','utf8')+'</script>');
 html=html.replace('<script src="app.js"></script>','<script>'+readFileSync('web/app.js','utf8')+'</script>');
 html=html.replace('<script src="https://cdn.jsdelivr.net/npm/hls.js@1.6.13/dist/hls.min.js"></script>','');
-html=html.replace('<script src="cctv.js"></script>',`<script>document.getElementById('cctv-message').textContent='독립 HTML에서는 지도에서 CCTV를 확인하세요. 현장 사진을 열어 3D 색 분석과 확대 보정을 사용할 수 있습니다.';document.getElementById('cctv-badge').textContent='지도에서 확인';document.getElementById('cctv-retry').hidden=true;document.getElementById('cctv-diagnose').hidden=true;document.getElementById('cctv-diagnostic').textContent='독립 HTML은 CCTV 서버에 연결하지 않습니다. 위 지도 버튼을 이용하세요.';</script>`);
+html=html.replace('<script src="cctv.js"></script>',`<script>document.getElementById('cctv-message').textContent='독립 HTML에서는 지도에서 CCTV를 확인하세요. 현장 사진을 열어 3D 색 분석과 확대 보정을 사용할 수 있습니다.';document.getElementById('cctv-badge').textContent='지도에서 확인';document.getElementById('cctv-recovery').hidden=false;document.getElementById('cctv-retry').hidden=true;document.getElementById('cctv-diagnose').hidden=true;document.getElementById('cctv-diagnostic').textContent='독립 HTML은 CCTV 서버에 연결하지 않습니다. 위 지도 버튼을 이용하세요.';</script>`);
 html=html.replace('<script src="studio.js"></script>','<script>window.BANGYE_LEAF_URL='+JSON.stringify(leaf)+';</script><script>'+readFileSync('web/studio.js','utf8')+'</script>');
 html=html.replace('<script src="cctv-zoom.js"></script>','<script>'+readFileSync('web/cctv-zoom.js','utf8')+'</script>');
-html=html.replace(/<script type="module">import\('\.\/tree3d\.js'\)[\s\S]*?<\/script>/,'<script type="module">'+readFileSync('web/tree3d.js','utf8').replace("const host=document", "const host=document")+'</script>');
+const treeBody=readFileSync('web/tree3d.js','utf8').replace(/^import .*;\r?\n/gm,'');
+const treeLoader=`<script type="module" id="tree-loader">let treePromise;window.BangyeLoadTree=()=>{if(treePromise)return treePromise;const loading=document.getElementById('model-loading');loading.hidden=false;loading.textContent='3D 나무를 준비하고 있습니다…';treePromise=Promise.all([import('three'),import('three/addons/controls/OrbitControls.js')]).then(([THREE,{OrbitControls}])=>{${treeBody}}).catch(()=>{treePromise=null;loading.hidden=false;loading.textContent='3D를 불러오지 못했습니다. 인터넷 연결을 확인하고 다른 탭을 열었다가 다시 선택해 주세요.';});return treePromise;};window.dispatchEvent(new Event('bangye-tree-loader-ready'));</script>`;
+html=html.replace(/<script type="module" id="tree-loader">[\s\S]*?<\/script>/,treeLoader);
 html=html.replace('CCTV 장면이나 현장 사진에서','현장 사진에서').replace('반계리 지금 · 은행나무 현황 확인','반계리 지금 · 독립 HTML');
 mkdirSync(dirname(target),{recursive:true});writeFileSync(target,html);console.log('Standalone HTML saved:',target);

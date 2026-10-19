@@ -3,10 +3,14 @@
 반계리 은행나무 방문 전 CCTV, 현장 사진, 날씨와 길찾기를 함께 확인하는 웹사이트의 소스 백업입니다.
 
 - 운영 사이트: https://bangye-ginkgo-watch.bzbone.chatgpt.site/
-- 백업 기준: 2026년 10월 14일, Sites 소스 커밋 `5f7c90f1f150d4d7ebf4ed08db96ab93ee687c76`
+- 백업 기준: 2026년 10월 19일, Sites 소스 커밋 `5bb300b3ced35881c2aa52d44eadc37ee4014b54`
 - 원본 운영 사이트의 공개 설정과 GitHub 저장소의 공개 설정은 서로 독립적입니다.
 
 ## 주요 기능
+
+- 현장 CCTV·3D 나무·방문 정보 탭, 키보드 이동과 탭 주소 공유
+- 간결한 단풍 상태와 펼쳐 보는 확인 기준
+- CCTV 전체 화면·장면 가져오기 중심 버튼, 오류 시 재연결·지도 안내
 
 - 반계IC 주변 ITS CCTV 조회·재생과 전체 화면
 - 영상 1~4배 확대, 두 손가락 확대·축소, 확대한 화면 드래그 이동
@@ -51,6 +55,7 @@ node scripts/build.mjs
 node scripts/test-worker.mjs
 node scripts/test-cctv-zoom.mjs
 node scripts/test-directions.mjs
+node scripts/test-ui.mjs
 ```
 
 Worker 배포 파일은 `dist/server/index.js`에 만들어집니다. 테스트는 모의 ITS 응답과 모의 위치·터치 이벤트를 사용하며, 실제 현장 영상이나 휴대폰 지도 앱 전환을 보증하지 않습니다.

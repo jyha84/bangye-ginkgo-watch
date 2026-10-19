@@ -78,7 +78,7 @@ for(let i=0;i<count;i++){
 }
 scene.add(leaves);
 let viewMode='full';
-function render(){renderer.render(scene,camera);}
+function render(){if(host.clientWidth&&host.clientHeight)renderer.render(scene,camera);}
 function fullView(){viewMode='full';const aspect=host.clientWidth/host.clientHeight,halfFov=Math.tan(THREE.MathUtils.degToRad(camera.fov/2));const distance=Math.max(60,38/(2*halfFov*aspect)*1.09,37/(2*halfFov)*1.09);camera.position.set(distance*.34,7,distance*.941);controls.target.set(0,16,0);controls.update();render();}
 function palette(items){if(!items?.length)return;const c=new THREE.Color();for(let i=0;i<count;i++){let sum=0,chosen=items.at(-1);for(const p of items){sum+=p.weight;if(choices[i]<=sum){chosen=p;break;}}c.set(chosen.color).multiplyScalar(lights[i]);leaves.setColorAt(i,c);}leaves.instanceColor.needsUpdate=true;render();window.BangyeTree3D={ready:true,leafCount:count,palette:items,dimensions:{height:34.5,width:37.5,depth:31}};}
 window.addEventListener('bangye-palette',e=>palette(e.detail));palette(window.bangyePalette);
@@ -86,6 +86,6 @@ controls.addEventListener('change',render);controls.addEventListener('start',()=
 document.getElementById('model-fullscreen')?.addEventListener('click',()=>{if(document.fullscreenElement===host)document.exitFullscreen?.();else host.requestFullscreen?.().catch(()=>{});});
 document.getElementById('model-low-view')?.addEventListener('click',()=>{viewMode='low';camera.position.set(14,2,47);controls.target.set(0,17,0);controls.update();render();});
 document.getElementById('model-reset').addEventListener('click',fullView);
-new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();if(viewMode==='full')fullView();else render();}).observe(host);
+new ResizeObserver(()=>{const w=host.clientWidth,h=host.clientHeight;if(!w||!h)return;renderer.setSize(w,h);camera.aspect=w/h;camera.updateProjectionMatrix();if(viewMode==='full')fullView();else render();}).observe(host);
 renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();loading.hidden=false;loading.textContent='3D 표시가 중단되었습니다. 페이지를 새로고침해 주세요.';});
 loading.hidden=true;render();
